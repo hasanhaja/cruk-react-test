@@ -1,8 +1,6 @@
-import styled, { ThemeProvider } from 'styled-components';
-import * as yup from 'yup';
-import { Field, Form, Formik } from 'formik';
-import { Button, TextField, crukTheme } from '@cruk/cruk-react-components';
-import React from 'react';
+import styled, { ThemeProvider } from "styled-components";
+import { crukTheme } from "@cruk/cruk-react-components";
+import React from "react";
 import SearchForm from "./components/SearchForm";
 import Searcher from "./api/Searcher";
 
@@ -15,8 +13,9 @@ const SiteWrapper = styled.div`
 export function App(): JSX.Element {
     const test = new Searcher("pluto", "image");
     const run = async (): Promise<any> => {
-        const data = await test.fetchSearchResults();
-        console.log(data);
+        // const data = await test.fetchSearchResults();
+        const data = await test.fetchAssets();
+        // console.log(`Fetched data: ${JSON.stringify(data[0])}`);
         return Promise.resolve();
     };
 

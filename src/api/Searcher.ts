@@ -1,6 +1,8 @@
 import SearchResultItem from "./SearchResultItem";
-import { Data, SearchResponse } from "./SearchResponse";
-import ResponseParser from "./ResponseParser";
+import { Data } from "./SearchResponse";
+import SearchResponseParser from "./SearchResponseParser";
+import AssetResponseParser from "./AssetResponseParser";
+import AssetResponse from "./AssetResponse";
 
 export class Searcher {
     private readonly keywords: string;
@@ -24,37 +26,34 @@ export class Searcher {
     }
 
     // TODO Handle error query?
-    // TODO figure out how to do this mapping
-    // https://stackoverflow.com/questions/50093886/typescript-convert-json-object-to-a-class-interface-object
-    //  https://stackoverflow.com/questions/45448199/how-to-dynamically-map-a-json-response-object-to-an-entity
-    // TODO convert keys to pascal case to cast correctly: https://stackoverflow.com/questions/44437953/angular-typescript-converting-from-snake-case-to-camel-case-in-interfaces
-    // private async fetchSearchResults(): Promise<Array<SearchResultItem>> {
-    public async fetchSearchResults(): Promise<Data | undefined> {
+    public async fetchSearchResults(): Promise<Array<SearchResultItem>> {
         const response = await fetch(this.constructedQuery);
         const jsonResponse = await response.json();
-        // const parsedResponse: SearchResponse =
-        //     jsonResponse.collection as SearchResponse;
-
-        const parser = new ResponseParser(jsonResponse);
+        const parser = new SearchResponseParser(jsonResponse);
         const parsedResponse = parser.result;
 
-        console.log(parsedResponse);
-        const data = parsedResponse.items.at(0)?.data.at(0)?.value.at(0);
+        // TODO map to get asset hrefs here and pass into parseDataToSearchResultItem??
+        //  or call it there?
 
-        return data;
+        return parsedResponse.items
+            .map((item) => item.data[0])
+            .map(Searcher.parseDataToSearchResultItem);
     }
 
-    /**
-     * export interface SearchResultItem {
-     *     nasaId: string;
-     *     mediaType: string;
-     *     title: string;
-     *     description: string;
-     * }
-     */
+    private static async fetchAssetResponse(
+        nasaId: string
+    ): Promise<AssetResponse> {
+        const query = `https://images-api.nasa.gov/asset/${nasaId}`;
+        const response = await fetch(query);
+        const jsonResponse = await response.json();
 
-    private static parseToSearchResultItem(): SearchResultItem | string {
-        return "";
+        const parser = new AssetResponseParser(jsonResponse);
+
+        return parser.result;
+    }
+
+    private static parseDataToSearchResultItem(data: Data): SearchResultItem {
+        return data as SearchResultItem;
     }
 }
 

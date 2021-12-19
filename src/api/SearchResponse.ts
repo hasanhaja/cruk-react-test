@@ -1,14 +1,11 @@
-export interface SearchResponse {
+import Response from "./Response";
+
+export interface SearchResponse extends Response<Item> {
     items: Array<Item>;
 }
 
-// TODO rework this to match data schema properly... one extra level of nesting
 export interface Item {
-    data: Array<ResponseData>;
-}
-
-export interface ResponseData {
-    value: Array<Data>;
+    data: Array<Data>;
 }
 
 export interface Data {
