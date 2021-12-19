@@ -32,12 +32,11 @@ export class Searcher {
         const parser = new SearchResponseParser(jsonResponse);
         const parsedResponse = parser.result;
 
-        // TODO map to get asset hrefs here and pass into parseDataToSearchResultItem??
-        //  or call it there?
-
-        return parsedResponse.items
-            .map((item) => item.data[0])
-            .map(Searcher.parseDataToSearchResultItem);
+        return Promise.all(
+            parsedResponse.items
+                .map((item) => item.data[0])
+                .map((data) => Searcher.parseDataToSearchResultItem(data))
+        );
     }
 
     private static async fetchAssetResponse(
@@ -52,8 +51,15 @@ export class Searcher {
         return parser.result;
     }
 
-    private static parseDataToSearchResultItem(data: Data): SearchResultItem {
-        return data as SearchResultItem;
+    private static async parseDataToSearchResultItem(
+        data: Data
+    ): Promise<SearchResultItem> {
+        const asset = await this.fetchAssetResponse(data.nasaId);
+        const { href } = asset.items[0];
+        return {
+            href,
+            ...data,
+        };
     }
 }
 

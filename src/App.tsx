@@ -13,9 +13,9 @@ const SiteWrapper = styled.div`
 export function App(): JSX.Element {
     const test = new Searcher("pluto", "image");
     const run = async (): Promise<any> => {
-        // const data = await test.fetchSearchResults();
-        const data = await test.fetchAssets();
-        // console.log(`Fetched data: ${JSON.stringify(data[0])}`);
+        const data = await test.fetchSearchResults();
+        // const data = await test.fetchAssets();
+        console.log(`Fetched data: ${JSON.stringify(data[0])}`);
         return Promise.resolve();
     };
 
