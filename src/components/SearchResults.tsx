@@ -10,7 +10,6 @@ export interface SearchResultsProps {
 }
 
 const Container = styled.div`
-    background: #fff;
     padding: 0 1%;
     min-width: 250px;
 `;

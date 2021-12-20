@@ -39,6 +39,7 @@ export function App(): JSX.Element {
                 <div>
                     <h1>CRUK technical exercise - React</h1>
                 </div>
+                <br />
                 <div>
                     <SearchForm
                         searchOnSubmitHandler={searchOnSubmitHandler}

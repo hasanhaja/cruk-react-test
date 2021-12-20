@@ -1,8 +1,7 @@
 import { Field, Form, Formik, FieldProps } from "formik";
-import { Button, Select, TextField } from "@cruk/cruk-react-components";
+import { Button, Select, Text, TextField } from "@cruk/cruk-react-components";
 import React from "react";
 import * as yup from "yup";
-import styled from "styled-components";
 
 export interface SearchFormProps {
     submitText: string;
@@ -59,12 +58,12 @@ export function SearchForm({
                                     {...field}
                                 />
                                 {errors.keywords && touched.keywords && (
-                                    <p>{errors.keywords}</p>
+                                    <Text textColor="red">{errors.keywords}</Text>
                                 )}
                             </>
                         )}
                     </Field>
-
+                    <br />
                     <Field name="mediaType">
                         {({ field }: FieldProps) => (
                             <>
@@ -77,12 +76,12 @@ export function SearchForm({
                                     <option value="image">Image</option>
                                 </Select>
                                 {errors.mediaType && touched.mediaType && (
-                                    <p>{errors.mediaType}</p>
+                                    <Text textColor="red">{errors.mediaType}</Text>
                                 )}
                             </>
                         )}
                     </Field>
-
+                    <br />
                     <Field name="yearStart">
                         {({ field }: FieldProps) => (
                             <>
@@ -92,7 +91,7 @@ export function SearchForm({
                                     {...field}
                                 />
                                 {errors.yearStart && touched.yearStart && (
-                                    <p>{errors.yearStart}</p>
+                                    <Text textColor="red">{errors.yearStart}</Text>
                                 )}
                             </>
                         )}
