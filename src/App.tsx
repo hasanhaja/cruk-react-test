@@ -16,6 +16,7 @@ export function App(): JSX.Element {
         const data = await test.fetchSearchResults();
         // const data = await test.fetchAssets();
         console.log(`Fetched data: ${JSON.stringify(data[0])}`);
+        console.log(`Fetched data size: ${data.length}`);
         return Promise.resolve();
     };
 

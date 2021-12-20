@@ -2,14 +2,31 @@ import { Data, Item, SearchResponse } from "./SearchResponse";
 import ResponseParser from "./ResponseParser";
 
 export class SearchResponseParser extends ResponseParser<SearchResponse> {
-    public get result(): SearchResponse {
-        const { collection } = this.json;
-        return SearchResponseParser.parseToSearchResponse(collection);
+    private readonly pageSize: number;
+
+    constructor(json: any, pageSize = 10) {
+        super(json);
+        this.pageSize = pageSize;
     }
 
-    private static parseToSearchResponse(collection: any): SearchResponse {
+    public get result(): SearchResponse {
+        const { collection } = this.json;
+        return SearchResponseParser.parseToSearchResponse(
+            collection,
+            this.pageSize
+        );
+    }
+
+    private static parseToSearchResponse(
+        collection: any,
+        pageSize: number
+    ): SearchResponse {
         const responseItems = collection.items as Array<any>;
-        const items = responseItems.map((item: any) => this.parseToItem(item));
+
+        // Map operations are not lazy like in Java, so slicing it first
+        const items = responseItems
+            .slice(0, pageSize)
+            .map((item: any) => this.parseToItem(item));
         return {
             items,
         };
