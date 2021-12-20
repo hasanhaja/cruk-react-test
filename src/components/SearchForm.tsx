@@ -1,25 +1,50 @@
 import { Field, Form, Formik, FieldProps } from "formik";
-import { Button, TextField } from "@cruk/cruk-react-components";
+import { Button, Select, TextField } from "@cruk/cruk-react-components";
 import React from "react";
 import * as yup from "yup";
-import MediaTypeField from "./MediaTypeField";
+import styled from "styled-components";
 
-export function SearchForm(): JSX.Element {
-    // TODO move schema else where?
+export interface SearchFormProps {
+    submitText: string;
+    searchOnSubmitHandler: (
+        keywords: string,
+        mediaType: string,
+        yearStart: string
+    ) => void;
+}
+
+export function SearchForm({
+    submitText,
+    searchOnSubmitHandler,
+}: SearchFormProps): JSX.Element {
     const formSchema = yup.object().shape({
-        town: yup.string().required("Please enter keywords to search."),
+        keywords: yup
+            .string()
+            .min(2, "Keywords must be between 2 and 50 characters.")
+            .max(50, "Keywords must be between 2 and 50 characters.")
+            .required("Please enter keywords to search."),
+        mediaType: yup.string().required("Please enter media type."),
+        yearStart: yup
+            .string()
+            .min(4, "Please enter a valid year.")
+            .max(4, "Please enter a valid year.")
+            .optional(),
     });
     return (
         <Formik
-            // validateOnChange
+            validateOnChange
             initialValues={{
                 keywords: "",
+                mediaType: "",
+                yearStart: "",
             }}
-            // validationSchema={formSchema}
-            // TODO onSubmit is not working for some reason
+            validationSchema={formSchema}
             onSubmit={(values) => {
-                // console.log(values);
-                alert(values);
+                searchOnSubmitHandler(
+                    values.keywords,
+                    values.mediaType,
+                    values.yearStart
+                );
             }}
         >
             {({ errors, touched }) => (
@@ -39,13 +64,20 @@ export function SearchForm(): JSX.Element {
                             </>
                         )}
                     </Field>
-                    {/* Split fields into separate fields with their own validation schemas */}
+
                     <Field name="mediaType">
-                        {() => (
+                        {({ field }: FieldProps) => (
                             <>
-                                <MediaTypeField />
-                                {errors.keywords && touched.keywords && (
-                                    <p>{errors.keywords}</p>
+                                <Select label="Media type" required {...field}>
+                                    <option disabled value="">
+                                        --Please select a media type--
+                                    </option>
+                                    <option value="audio">Audio</option>
+                                    <option value="video">Video</option>
+                                    <option value="image">Image</option>
+                                </Select>
+                                {errors.mediaType && touched.mediaType && (
+                                    <p>{errors.mediaType}</p>
                                 )}
                             </>
                         )}
@@ -59,14 +91,14 @@ export function SearchForm(): JSX.Element {
                                     type="text"
                                     {...field}
                                 />
-                                {errors.keywords && touched.keywords && (
-                                    <p>{errors.keywords}</p>
+                                {errors.yearStart && touched.yearStart && (
+                                    <p>{errors.yearStart}</p>
                                 )}
                             </>
                         )}
                     </Field>
-
-                    <Button type="submit">Submit</Button>
+                    <br />
+                    <Button type="submit">{submitText}</Button>
                 </Form>
             )}
         </Formik>

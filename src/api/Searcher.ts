@@ -9,18 +9,17 @@ export class Searcher {
 
     private readonly mediaType: string;
 
-    private readonly year: string | undefined;
+    private readonly year: string;
 
-    constructor(keywords: string, mediaType: string, year?: string) {
+    constructor(keywords: string, mediaType: string, year: string) {
         this.keywords = keywords;
         this.mediaType = mediaType;
         this.year = year;
     }
 
-    // TODO check the formatting for the date
     public get constructedQuery(): string {
         const baseQuery = `https://images-api.nasa.gov/search?q=${this.keywords}&media_type=${this.mediaType}`;
-        return typeof this.year !== "undefined"
+        return this.year !== ""
             ? `${baseQuery}&year_start=${this.year}`
             : baseQuery;
     }
@@ -40,13 +39,14 @@ export class Searcher {
     }
 
     private static async fetchAssetResponse(
-        nasaId: string
+        nasaId: string,
+        mediaType: string
     ): Promise<AssetResponse> {
         const query = `https://images-api.nasa.gov/asset/${nasaId}`;
         const response = await fetch(query);
         const jsonResponse = await response.json();
 
-        const parser = new AssetResponseParser(jsonResponse);
+        const parser = new AssetResponseParser(jsonResponse, mediaType);
 
         return parser.result;
     }
@@ -54,7 +54,10 @@ export class Searcher {
     private static async parseDataToSearchResultItem(
         data: Data
     ): Promise<SearchResultItem> {
-        const asset = await this.fetchAssetResponse(data.nasaId);
+        const asset = await this.fetchAssetResponse(
+            data.nasaId,
+            data.mediaType
+        );
         const { href } = asset.items[0];
         return {
             href,

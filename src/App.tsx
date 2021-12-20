@@ -1,26 +1,37 @@
 import styled, { ThemeProvider } from "styled-components";
 import { crukTheme } from "@cruk/cruk-react-components";
-import React from "react";
+import React, { useState } from "react";
 import SearchForm from "./components/SearchForm";
 import Searcher from "./api/Searcher";
+import SearchResults from "./components/SearchResults";
+import SearchResultItem from "./api/SearchResultItem";
 
 const SiteWrapper = styled.div`
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
+    overflow-x: hidden;
 `;
 
 export function App(): JSX.Element {
-    const test = new Searcher("pluto", "image");
-    const run = async (): Promise<any> => {
-        const data = await test.fetchSearchResults();
-        // const data = await test.fetchAssets();
-        console.log(`Fetched data: ${JSON.stringify(data[0])}`);
-        console.log(`Fetched data size: ${data.length}`);
-        return Promise.resolve();
+    const [data, setData] = useState(new Array<SearchResultItem>());
+    const [keyword, setKeyword] = useState("");
+    const [submitText, setSubmitText] = useState("Submit");
+    const searchOnSubmitHandler = (
+        keywords: string,
+        mediaType: string,
+        yearStart: string
+    ): void => {
+        const searcher = new Searcher(keywords, mediaType, yearStart);
+        setKeyword(keywords);
+        setSubmitText("Submitting...");
+        searcher
+            .fetchSearchResults()
+            .then((result) => setData(result))
+            .then((_) => setSubmitText("Submit"))
+            // TODO Remove console error
+            .catch(console.error);
     };
-
-    run();
 
     return (
         <ThemeProvider theme={crukTheme}>
@@ -29,7 +40,12 @@ export function App(): JSX.Element {
                     <h1>CRUK technical exercise - React</h1>
                 </div>
                 <div>
-                    <SearchForm />
+                    <SearchForm
+                        searchOnSubmitHandler={searchOnSubmitHandler}
+                        submitText={submitText}
+                    />
+                    <br />
+                    <SearchResults data={data} keyword={keyword} />
                 </div>
             </SiteWrapper>
         </ThemeProvider>
