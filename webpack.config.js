@@ -1,7 +1,6 @@
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -27,7 +26,7 @@ const config = {
       {
         test: /\.css$/i,
         use: [
-            isProd ? MiniCssExtractPlugin.loader : "style-loader",
+            "style-loader",
             "css-loader",
             ],
       },
@@ -39,7 +38,7 @@ const config = {
       filename: "index.html",
       inject: "body",
     }),
-  ].concat(isProd ? [new MiniCssExtractPlugin()] : []),
+  ],
 };
 
 if (isProd) {
