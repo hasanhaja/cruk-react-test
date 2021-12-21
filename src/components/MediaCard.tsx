@@ -12,7 +12,7 @@ const Card = styled.div`
     max-width: 450px;
     min-width: 250px;
     max-height: fit-content;
-    border-radius: 3px;
+    border-radius: 4px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 `;
 

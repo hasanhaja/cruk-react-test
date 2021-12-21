@@ -4,5 +4,17 @@
         "@babel/react",
         "@babel/typescript"
     ],
-    "plugins": [["styled-components", { "pure": true, "ssr": true }]]
+    "plugins": [
+        ["styled-components", { "pure": true, "ssr": true }],
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                "absoluteRuntime": false,
+                "corejs": 3,
+                "helpers": true,
+                "regenerator": true,
+                "version": "^7.16.5"
+            }
+        ]
+    ]
 }

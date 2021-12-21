@@ -9,6 +9,7 @@ const config = {
   entry: {
     index: "./src/index.tsx",
   },
+  target: ["web", 'es5'],
   output: {
     path: resolve(__dirname, "dist"),
     filename: "bundle.js",

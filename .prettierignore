@@ -3,3 +3,5 @@
 /dist
 /coverage
 webpack.config.js
+jest.config.ts
+/src/reportWebVitals.ts
