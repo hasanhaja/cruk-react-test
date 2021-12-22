@@ -78,7 +78,7 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
-    "jest": "27.4.4",
+    "jest": "27.4.5",
     "prettier": "^2.5.1",
     "serve": "^13.0.2",
     "style-loader": "3.3.1",
