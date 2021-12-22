@@ -1,5 +1,5 @@
 import { Field, Form, Formik, FieldProps } from "formik";
-import { Button, Select, Text, TextField } from "@cruk/cruk-react-components";
+import { Button, Select, TextField } from "@cruk/cruk-react-components";
 import React from "react";
 import * as yup from "yup";
 
@@ -24,11 +24,15 @@ export function SearchForm({
             .required("Please enter keywords to search."),
         mediaType: yup.string().required("Please enter media type."),
         yearStart: yup
-            .string()
-            .min(4, "Please enter a valid year.")
-            .max(4, "Please enter a valid year.")
+            .number()
+            .typeError("Please enter a number.")
+            .integer("Please enter a valid year.")
+            .positive()
+            .min(1000, "Please enter a valid year.")
+            .max(new Date().getFullYear(), "Year must not be in the future.")
             .optional(),
     });
+
     return (
         <Formik
             validateOnChange
@@ -50,50 +54,54 @@ export function SearchForm({
                 <Form>
                     <Field name="keywords">
                         {({ field }: FieldProps) => (
-                            <>
-                                <TextField
-                                    label="Keywords"
-                                    type="text"
-                                    required
-                                    {...field}
-                                />
-                                {errors.keywords && touched.keywords && (
-                                    <Text textColor="red">{errors.keywords}</Text>
-                                )}
-                            </>
+                            <TextField
+                                label="Keywords"
+                                type="text"
+                                required
+                                errorMessage={errors.keywords}
+                                hasError={
+                                    errors.keywords !== undefined &&
+                                    touched.keywords !== undefined
+                                }
+                                {...field}
+                            />
                         )}
                     </Field>
                     <br />
                     <Field name="mediaType">
                         {({ field }: FieldProps) => (
-                            <>
-                                <Select label="Media type" required {...field}>
-                                    <option disabled value="">
-                                        --Please select a media type--
-                                    </option>
-                                    <option value="audio">Audio</option>
-                                    <option value="video">Video</option>
-                                    <option value="image">Image</option>
-                                </Select>
-                                {errors.mediaType && touched.mediaType && (
-                                    <Text textColor="red">{errors.mediaType}</Text>
-                                )}
-                            </>
+                            <Select
+                                label="Media type"
+                                required
+                                errorMessage={errors.mediaType}
+                                hasError={
+                                    errors.mediaType !== undefined &&
+                                    touched.mediaType !== undefined
+                                }
+                                {...field}
+                            >
+                                <option disabled value="">
+                                    --Please select a media type--
+                                </option>
+                                <option value="audio">Audio</option>
+                                <option value="video">Video</option>
+                                <option value="image">Image</option>
+                            </Select>
                         )}
                     </Field>
                     <br />
                     <Field name="yearStart">
                         {({ field }: FieldProps) => (
-                            <>
-                                <TextField
-                                    label="Year start"
-                                    type="text"
-                                    {...field}
-                                />
-                                {errors.yearStart && touched.yearStart && (
-                                    <Text textColor="red">{errors.yearStart}</Text>
-                                )}
-                            </>
+                            <TextField
+                                label="Year start"
+                                type="text"
+                                errorMessage={errors.yearStart}
+                                hasError={
+                                    errors.yearStart !== undefined &&
+                                    touched.yearStart !== undefined
+                                }
+                                {...field}
+                            />
                         )}
                     </Field>
                     <br />

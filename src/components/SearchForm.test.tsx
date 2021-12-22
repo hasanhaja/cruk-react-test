@@ -1,8 +1,11 @@
-import {act, render, screen, waitFor, within} from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import React from "react";
 import user from "@testing-library/user-event";
 import SearchForm from "./SearchForm";
 
+/**
+ * Used https://testing-playground.com/ to generate the appropriate queries
+ */
 function getKeywords(): HTMLElement {
     return screen.getByRole("textbox", {
         name: /keywords \(required\)/i,
@@ -61,6 +64,7 @@ describe("SearchForm", () => {
 
         await waitFor(() => {
             expect(onSubmit).not.toHaveBeenCalledTimes(1);
+            expect(screen.getAllByRole("alert").length).toBe(2);
         });
     });
 
@@ -70,6 +74,7 @@ describe("SearchForm", () => {
 
         await waitFor(() => {
             expect(onSubmit).not.toHaveBeenCalledTimes(1);
+            expect(screen.getAllByRole("alert").length).toBe(1);
         });
     });
 
@@ -79,6 +84,7 @@ describe("SearchForm", () => {
 
         await waitFor(() => {
             expect(onSubmit).not.toHaveBeenCalledTimes(1);
+            expect(screen.getAllByRole("alert").length).toBe(1);
         });
     });
 
@@ -105,6 +111,7 @@ describe("SearchForm", () => {
 
         await waitFor(() => {
             expect(onSubmit).not.toHaveBeenCalledTimes(1);
+            expect(screen.getAllByRole("alert").length).toBe(1);
         });
     });
 
@@ -115,6 +122,7 @@ describe("SearchForm", () => {
 
         await waitFor(() => {
             expect(onSubmit).not.toHaveBeenCalledTimes(1);
+            expect(screen.getAllByRole("alert").length).toBe(1);
         });
     });
 
@@ -128,6 +136,7 @@ describe("SearchForm", () => {
 
         await waitFor(() => {
             expect(onSubmit).not.toHaveBeenCalledTimes(1);
+            expect(screen.getAllByRole("alert").length).toBe(1);
         });
     });
 
@@ -139,6 +148,7 @@ describe("SearchForm", () => {
 
         await waitFor(() => {
             expect(onSubmit).not.toHaveBeenCalledTimes(1);
+            expect(screen.getAllByRole("alert").length).toBe(1);
         });
     });
 
@@ -150,10 +160,10 @@ describe("SearchForm", () => {
 
         await waitFor(() => {
             expect(onSubmit).not.toHaveBeenCalledTimes(1);
+            expect(screen.getAllByRole("alert").length).toBe(1);
         });
     });
 
-    // TODO year is number validation
     it("should fail when year is not a number", async () => {
         user.type(getKeywords(), "Pulsars");
         user.selectOptions(getMediaType(), getMediaOption("Video"));
@@ -162,9 +172,19 @@ describe("SearchForm", () => {
 
         await waitFor(() => {
             expect(onSubmit).not.toHaveBeenCalledTimes(1);
+            expect(screen.getAllByRole("alert").length).toBe(1);
         });
     });
 
-    // TODO write test for An error message below the field should read “Year must not be in the future.” if the user enters a year after the current year.
+    it("should fail when year is in the future", async () => {
+        user.type(getKeywords(), "Pulsars");
+        user.selectOptions(getMediaType(), getMediaOption("Video"));
+        user.type(getYearStart(), `${new Date().getFullYear() + 1}`);
+        user.click(getSubmit());
 
+        await waitFor(() => {
+            expect(onSubmit).not.toHaveBeenCalledTimes(1);
+            expect(screen.getAllByRole("alert").length).toBe(1);
+        });
+    });
 });
