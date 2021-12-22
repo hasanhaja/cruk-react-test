@@ -14,6 +14,7 @@ const Card = styled.div`
     max-height: fit-content;
     border-radius: 4px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 `;
 
 const CardContent = styled.div`
@@ -24,8 +25,6 @@ const Photo = styled.img`
     width: 100%;
     max-height: 30rem;
     object-fit: cover;
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
 `;
 
 const Video = styled.video`

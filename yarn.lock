@@ -893,14 +893,14 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.16.5"
 
-"@babel/plugin-transform-react-jsx-development@^7.16.0", "@babel/plugin-transform-react-jsx-development@^7.16.5":
+"@babel/plugin-transform-react-jsx-development@^7.16.5":
   version "7.16.5"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-development/-/plugin-transform-react-jsx-development-7.16.5.tgz#87da9204c275ffb57f45d192a1120cf104bc1e86"
   integrity sha512-uQSLacMZSGLCxOw20dzo1dmLlKkd+DsayoV54q3MHXhbqgPzoiGerZQgNPl/Ro8/OcXV2ugfnkx+rxdS0sN5Uw==
   dependencies:
     "@babel/plugin-transform-react-jsx" "^7.16.5"
 
-"@babel/plugin-transform-react-jsx@^7.12.12", "@babel/plugin-transform-react-jsx@^7.16.0", "@babel/plugin-transform-react-jsx@^7.16.5":
+"@babel/plugin-transform-react-jsx@^7.12.12", "@babel/plugin-transform-react-jsx@^7.16.5":
   version "7.16.5"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.16.5.tgz#5298aedc5f81e02b1cb702e597e8d6a346675765"
   integrity sha512-+arLIz1d7kmwX0fKxTxbnoeG85ONSnLpvdODa4P3pc1sS7CV1hfmtYWufkW/oYsPnkDrEeQFxhUWcFnrXW7jQQ==
@@ -911,7 +911,7 @@
     "@babel/plugin-syntax-jsx" "^7.16.5"
     "@babel/types" "^7.16.0"
 
-"@babel/plugin-transform-react-pure-annotations@^7.16.0", "@babel/plugin-transform-react-pure-annotations@^7.16.5":
+"@babel/plugin-transform-react-pure-annotations@^7.16.5":
   version "7.16.5"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-pure-annotations/-/plugin-transform-react-pure-annotations-7.16.5.tgz#6535d0fe67c7a3a26c5105f92c8cbcbe844cd94b"
   integrity sha512-0nYU30hCxnCVCbRjSy9ahlhWZ2Sn6khbY4FqR91W+2RbSqkWEbVu2gXh45EqNy4Bq7sRU+H4i0/6YKwOSzh16A==
@@ -981,7 +981,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.16.5"
 
-"@babel/plugin-transform-typescript@^7.16.0", "@babel/plugin-transform-typescript@^7.16.1":
+"@babel/plugin-transform-typescript@^7.16.1":
   version "7.16.1"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.16.1.tgz#cc0670b2822b0338355bc1b3d2246a42b8166409"
   integrity sha512-NO4XoryBng06jjw/qWEU2LhcLJr1tWkhpMam/H4eas/CDKMX/b2/Ylb6EI256Y7+FVPCawwSM1rrJNOpDiz+Lg==
@@ -1105,19 +1105,7 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/preset-react@7.16.0":
-  version "7.16.0"
-  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.16.0.tgz#f71d3e8dff5218478011df037fad52660ee6d82a"
-  integrity sha512-d31IFW2bLRB28uL1WoElyro8RH5l6531XfxMtCeCmp6RVAF1uTfxxUA0LH1tXl+psZdwfmIbwoG4U5VwgbhtLw==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.14.5"
-    "@babel/helper-validator-option" "^7.14.5"
-    "@babel/plugin-transform-react-display-name" "^7.16.0"
-    "@babel/plugin-transform-react-jsx" "^7.16.0"
-    "@babel/plugin-transform-react-jsx-development" "^7.16.0"
-    "@babel/plugin-transform-react-pure-annotations" "^7.16.0"
-
-"@babel/preset-react@^7.12.10", "@babel/preset-react@^7.12.5", "@babel/preset-react@^7.16.0":
+"@babel/preset-react@7.16.5", "@babel/preset-react@^7.12.10", "@babel/preset-react@^7.12.5", "@babel/preset-react@^7.16.0":
   version "7.16.5"
   resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.16.5.tgz#09df3b7a6522cb3e6682dc89b4dfebb97d22031b"
   integrity sha512-3kzUOQeaxY/2vhPDS7CX/KGEGu/1bOYGvdRDJ2U5yjEz5o5jmIeTPLoiQBPGjfhPascLuW5OlMiPzwOOuB6txg==
@@ -1129,16 +1117,7 @@
     "@babel/plugin-transform-react-jsx-development" "^7.16.5"
     "@babel/plugin-transform-react-pure-annotations" "^7.16.5"
 
-"@babel/preset-typescript@7.16.0":
-  version "7.16.0"
-  resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.16.0.tgz#b0b4f105b855fb3d631ec036cdc9d1ffd1fa5eac"
-  integrity sha512-txegdrZYgO9DlPbv+9QOVpMnKbOtezsLHWsnsRF4AjbSIsVaujrq1qg8HK0mxQpWv0jnejt0yEoW1uWpvbrDTg==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.14.5"
-    "@babel/helper-validator-option" "^7.14.5"
-    "@babel/plugin-transform-typescript" "^7.16.0"
-
-"@babel/preset-typescript@^7.12.7", "@babel/preset-typescript@^7.16.0":
+"@babel/preset-typescript@7.16.5", "@babel/preset-typescript@^7.12.7", "@babel/preset-typescript@^7.16.0":
   version "7.16.5"
   resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.16.5.tgz#b86a5b0ae739ba741347d2f58c52f52e63cf1ba1"
   integrity sha512-lmAWRoJ9iOSvs3DqOndQpj8XqXkzaiQs50VG/zESiI9D3eoZhGriU675xNCr0UwvsuXrhMAGvyk1w+EVWF3u8Q==
@@ -1552,7 +1531,7 @@
     slash "^3.0.0"
     strip-ansi "^6.0.0"
 
-"@jest/core@^27.4.4", "@jest/core@^27.4.5":
+"@jest/core@^27.4.5":
   version "27.4.5"
   resolved "https://registry.yarnpkg.com/@jest/core/-/core-27.4.5.tgz#cae2dc34259782f4866c6606c3b480cce920ed4c"
   integrity sha512-3tm/Pevmi8bDsgvo73nX8p/WPng6KWlCyScW10FPEoN1HU4pwI83tJ3TsFvi1FfzsjwUlMNEPowgb/rPau/LTQ==
@@ -2977,10 +2956,10 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@16.11.12":
-  version "16.11.12"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.12.tgz#ac7fb693ac587ee182c3780c26eb65546a1a3c10"
-  integrity sha512-+2Iggwg7PxoO5Kyhvsq9VarmPbIelXP070HMImEpbtGCoyWNINQj4wzjbQCXzdHTRXnqufutJb5KAURZANNBAw==
+"@types/node@*", "@types/node@17.0.2":
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.2.tgz#a4c07d47ff737e8ee7e586fe636ff0e1ddff070a"
+  integrity sha512-JepeIUPFDARgIs0zD/SKPgFsJEAF0X5/qO80llx59gOxFTboS9Amv3S+QfB7lqBId5sFXJ99BN0J6zFRvL9dDA==
 
 "@types/node@^14.0.10", "@types/node@^14.14.31":
   version "14.18.0"
@@ -9561,7 +9540,7 @@ jest-cli@^26.6.0:
     prompts "^2.0.1"
     yargs "^15.4.1"
 
-jest-cli@^27.4.4:
+jest-cli@^27.4.5:
   version "27.4.5"
   resolved "https://registry.yarnpkg.com/jest-cli/-/jest-cli-27.4.5.tgz#8708f54c28d13681f3255ec9026a2b15b03d41e8"
   integrity sha512-hrky3DSgE0u7sQxaCL7bdebEPHx5QzYmrGuUjaPLmPE8jx5adtvGuOlRspvMoVLTTDOHRnZDoRLYJuA+VCI7Hg==
@@ -10304,14 +10283,14 @@ jest@26.6.0:
     import-local "^3.0.2"
     jest-cli "^26.6.0"
 
-jest@27.4.4:
-  version "27.4.4"
-  resolved "https://registry.yarnpkg.com/jest/-/jest-27.4.4.tgz#9b1aa1db25d0b13477a49d18e22ba7cdff97105b"
-  integrity sha512-AXwEIFa58Uf1Jno3/KSo5HZZ0/2Xwqvfrz0/3bmTwImkFlbOvz5vARAW9nTrxRLkojjkitaZ1KNKAtw3JRFAaA==
+jest@27.4.5:
+  version "27.4.5"
+  resolved "https://registry.yarnpkg.com/jest/-/jest-27.4.5.tgz#66e45acba44137fac26be9d3cc5bb031e136dc0f"
+  integrity sha512-uT5MiVN3Jppt314kidCk47MYIRilJjA/l2mxwiuzzxGUeJIvA8/pDaJOAX5KWvjAo7SCydcW0/4WEtgbLMiJkg==
   dependencies:
-    "@jest/core" "^27.4.4"
+    "@jest/core" "^27.4.5"
     import-local "^3.0.2"
-    jest-cli "^27.4.4"
+    jest-cli "^27.4.5"
 
 js-string-escape@^1.0.1:
   version "1.0.1"
