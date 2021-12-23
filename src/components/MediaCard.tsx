@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Text, Heading } from "@cruk/cruk-react-components";
+import { Text, Heading, Badge } from "@cruk/cruk-react-components";
 import SearchResultItem from "../api/SearchResultItem";
 
 export interface MediaCardProps {
@@ -15,16 +15,42 @@ const Card = styled.div`
     border-radius: 4px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    display: grid;
+    grid-template-areas:
+        "media"
+        "content";
 `;
 
 const CardContent = styled.div`
     padding: 5% 2%;
+    grid-area: content;
+
+    display: grid;
+    grid-template-columns: 7fr 1fr;
+    grid-template-areas:
+        "title center"
+        "description description";
+`;
+
+const Title = styled(Heading)`
+    grid-area: title;
+`;
+
+const Description = styled(Text)`
+    grid-area: description;
+`;
+
+const Center = styled(Badge)`
+    grid-area: center;
+    width: 2em;
+    height: 2em;
 `;
 
 const Photo = styled.img`
     width: 100%;
     max-height: 30rem;
     object-fit: cover;
+    grid-area: media;
 `;
 
 const Video = styled.video`
@@ -33,11 +59,13 @@ const Video = styled.video`
     object-fit: cover;
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
+    grid-area: media;
 `;
 
 const Audio = styled.audio`
     width: 100%;
     height: auto;
+    grid-area: media;
 `;
 
 function mediaObject(data: SearchResultItem): JSX.Element {
@@ -66,8 +94,9 @@ export function MediaCard({ data }: MediaCardProps): JSX.Element {
         <Card>
             {mediaObject(data)}
             <CardContent>
-                <Heading h5>{data.title}</Heading>
-                <Text>{data.description}</Text>
+                <Title h5>{data.title}</Title>
+                <Center size="xxs">{data.center}</Center>
+                <Description>{data.description}</Description>
             </CardContent>
         </Card>
     );
