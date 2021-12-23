@@ -18,11 +18,14 @@ export function SearchResults({
     data,
     keyword,
 }: SearchResultsProps): JSX.Element {
+    const dataLength = data.length;
     return (
         <Container>
             {/* Only show title if data is loaded */}
             {keyword !== "" ? (
-                <Heading h4>{`Showing results for "${keyword}"`}</Heading>
+                <Heading h4>{`Showing ${dataLength} ${
+                    dataLength === 1 ? "result" : "results"
+                } for "${keyword}"`}</Heading>
             ) : null}
 
             {data.map((d, index) => (

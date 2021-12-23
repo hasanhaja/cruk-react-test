@@ -29,7 +29,6 @@ export function App(): JSX.Element {
             .fetchSearchResults()
             .then((result) => setData(result))
             .then(() => setSubmitText("Submit"))
-            // TODO Remove console error
             .catch(console.error);
     };
 

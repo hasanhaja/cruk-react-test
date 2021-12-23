@@ -6,12 +6,23 @@
 - Code must be clean and production ready.
 - Feel free to edit this readme or add a new readme file for any additional information, such as what you might do in the future to improve this product.
 
+## Features and implementation details
+
+- [x] Core features
+- [ ] Component test coverage
+  - [x] `components/SearchForm`
+  - [x] `components/SearchResults`
+  - [ ] `components/MediaCard`
+  - [x] `src/App`   
+
 ## Documentation for tools used
 
 - Formik: https://formik.org/docs/overview
 - Yup https://github.com/jquense/yup
 - Styled components https://styled-components.com/docs
 - NASA Images and Video Library API https://api.nasa.gov/
+- TypeScript https://www.typescriptlang.org/
+- Webpack https://webpack.js.org/
 
 ## Task details
 

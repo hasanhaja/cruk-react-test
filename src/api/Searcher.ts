@@ -24,7 +24,6 @@ export class Searcher {
             : baseQuery;
     }
 
-    // TODO Handle error query?
     public async fetchSearchResults(): Promise<Array<SearchResultItem>> {
         const response = await fetch(this.constructedQuery);
         const jsonResponse = await response.json();

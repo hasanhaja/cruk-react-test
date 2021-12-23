@@ -2,11 +2,20 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-describe("App", () => {
-    const onSubmit = jest.fn();
+function getHeading(): HTMLElement {
+    return screen.getByRole("heading", {
+        name: /cruk technical exercise - react/i,
+    });
+}
 
+describe("App", () => {
     beforeEach(() => {
-        onSubmit.mockClear();
         render(<App />);
+    });
+
+    it("should render", () => {
+        expect(getHeading().textContent).toBe(
+            "CRUK technical exercise - React"
+        );
     });
 });
